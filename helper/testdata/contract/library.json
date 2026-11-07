@@ -1,0 +1,37 @@
+{
+  "games": [
+    {
+      "appID": 1145360,
+      "name": "Hades",
+      "state": "installed",
+      "sizeOnDisk": 15032385536,
+      "lastPlayed": 1730764800,
+      "bytesDownloaded": 0,
+      "bytesToDownload": 0,
+      "artURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg",
+      "headerURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg"
+    },
+    {
+      "appID": 730,
+      "name": "Counter-Strike 2",
+      "state": "installed",
+      "sizeOnDisk": 1,
+      "bytesDownloaded": 0,
+      "bytesToDownload": 0,
+      "artURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/730/library_600x900.jpg",
+      "headerURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
+      "updatePending": true
+    },
+    {
+      "appID": 570,
+      "name": "Dota 2",
+      "state": "downloading",
+      "sizeOnDisk": 0,
+      "bytesDownloaded": 4,
+      "bytesToDownload": 10,
+      "artURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/library_600x900.jpg",
+      "headerURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
+    }
+  ]
+}
+

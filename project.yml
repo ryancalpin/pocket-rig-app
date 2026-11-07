@@ -1,0 +1,130 @@
+name: PocketRig
+options:
+  bundleIdPrefix: com.ryancalpin
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: X6PM238Q98
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  MoonlightCore:
+    path: Packages/MoonlightCore
+targets:
+  PocketRig:
+    type: application
+    platform: iOS
+    # Includes PocketRig/PrivacyInfo.xcprivacy, which XcodeGen copies into the app as a resource.
+    sources:
+      - path: PocketRig
+        excludes: ["Store/PocketRig.storekit"]
+    info:
+      path: PocketRig/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: Pocket Rig
+        # Only standard encryption (TLS, AES, SHA via OpenSSL/CryptoKit); qualifies for the export exemption.
+        ITSAppUsesNonExemptEncryption: false
+        NSLocalNetworkUsageDescription: Pocket Rig looks for your gaming PC on your home network.
+        NSBonjourServices: [_nvstream._tcp]
+        NSPhotoLibraryAddUsageDescription: Pocket Rig saves game screenshots and replay clips to your photo library.
+        UTExportedTypeDeclarations:
+          - UTTypeIdentifier: com.ryancalpin.pocketrig.layout
+            UTTypeDescription: Pocket Rig button layout
+            UTTypeConformsTo: [public.json]
+            UTTypeTagSpecification:
+              public.filename-extension: [pocketriglayout]
+              public.mime-type: [application/x-pocketrig-layout]
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        GCSupportsControllerUserInteraction: true
+        GCSupportedGameControllers:
+          - ProfileName: ExtendedGamepad
+        # Picture in picture keeps playing the stream after the app leaves the screen.
+        UIBackgroundModes: [audio]
+        # Steam download progress in the Dynamic Island.
+        NSSupportsLiveActivities: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIStatusBarHidden: false
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    entitlements:
+      path: PocketRig/PocketRig.entitlements
+      properties:
+        # Storage shared with the widget extension.
+        com.apple.security.application-groups: [group.com.ryancalpin.pocketrig]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryancalpin.pocketrig
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        # iPhone Duo hinge APIs (iOS 27.1 SDK), used only in PocketRig/Pose/DuoHinge.swift.
+        OTHER_SWIFT_FLAGS: "$(inherited) -DPOCKETRIG_HINGE_API"
+    dependencies:
+      - target: PocketRigWidgets
+      - package: MoonlightCore
+        product: CMoonlight
+  # Home Screen widget, Control Center button and the download Live Activity.
+  PocketRigWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      # Includes PocketRigWidgets/PrivacyInfo.xcprivacy (copied into the extension as a resource).
+      - PocketRigWidgets
+      # Shared with the app: App Group storage, the Resume intent and the widget pictures.
+      - PocketRig/Shared
+    info:
+      path: PocketRigWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Pocket Rig
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: PocketRigWidgets/PocketRigWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.ryancalpin.pocketrig]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryancalpin.pocketrig.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+  PocketRigTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - PocketRigTests
+      # The Helper's golden replies (written by the Go tests) become a "contract" folder in the test bundle.
+      - path: helper/testdata/contract
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: PocketRig
+      - package: MoonlightCore
+        product: CMoonlight
+schemes:
+  PocketRig:
+    build:
+      targets:
+        PocketRig: all
+        PocketRigTests: [test]
+    run:
+      # Local test tips only; the file is not part of the app bundle (see the excludes on the target).
+      storeKitConfiguration: PocketRig/Store/PocketRig.storekit
+    test:
+      targets: [PocketRigTests]
+      storeKitConfiguration: PocketRig/Store/PocketRig.storekit

@@ -1,0 +1,14 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcresult
+# Swift Package Manager
+.build/
+.swiftpm/
+# macOS
+.DS_Store
+# Local scratch
+.superpowers/
+PocketRig.xcodeproj/

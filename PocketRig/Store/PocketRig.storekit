@@ -1,0 +1,50 @@
+{
+  "identifier" : "A1B2C3D4",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6740000001",
+      "localizations" : [
+        { "description" : "A small thank-you. Unlocks nothing.", "displayName" : "Small tip", "locale" : "en_US" }
+      ],
+      "productID" : "com.ryancalpin.pocketrig.tip.small",
+      "referenceName" : "Small tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6740000002",
+      "localizations" : [
+        { "description" : "A medium thank-you. Unlocks nothing.", "displayName" : "Medium tip", "locale" : "en_US" }
+      ],
+      "productID" : "com.ryancalpin.pocketrig.tip.medium",
+      "referenceName" : "Medium tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "6740000003",
+      "localizations" : [
+        { "description" : "A big thank-you. Unlocks nothing.", "displayName" : "Large tip", "locale" : "en_US" }
+      ],
+      "productID" : "com.ryancalpin.pocketrig.tip.large",
+      "referenceName" : "Large tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6740000000",
+    "_developerTeamID" : "X6PM238Q98",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 0,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 4, "minor" : 0 }
+}

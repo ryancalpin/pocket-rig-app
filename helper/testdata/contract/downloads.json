@@ -1,0 +1,14 @@
+{
+  "downloads": [
+    {
+      "appID": 570,
+      "name": "Dota 2",
+      "state": "downloading",
+      "bytesDownloaded": 4,
+      "bytesToDownload": 10,
+      "progress": 0.4,
+      "headerURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg"
+    }
+  ]
+}
+

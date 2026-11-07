@@ -1,0 +1,15 @@
+{
+  "apiVersion": 1,
+  "version": "test",
+  "hostname": "Geo-HP-OMEN",
+  "capabilities": [
+    "sleep",
+    "restart"
+  ],
+  "steam": {
+    "state": "notSetUp",
+    "running": false
+  },
+  "desktopReady": true
+}
+

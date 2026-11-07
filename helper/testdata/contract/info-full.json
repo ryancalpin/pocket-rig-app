@@ -1,0 +1,28 @@
+{
+  "apiVersion": 1,
+  "version": "test",
+  "hostname": "Geo-HP-OMEN",
+  "capabilities": [
+    "library",
+    "downloads",
+    "install",
+    "play",
+    "restart-steam",
+    "close-game",
+    "sleep",
+    "restart",
+    "lock"
+  ],
+  "steam": {
+    "state": "ready",
+    "running": true
+  },
+  "wake": {
+    "mac": "04:0e:3c:2a:36:94",
+    "interface": "enp34s0",
+    "linkUp": true,
+    "broadcast": "192.168.1.255"
+  },
+  "desktopReady": true
+}
+
